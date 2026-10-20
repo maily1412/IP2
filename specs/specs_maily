@@ -1,0 +1,11 @@
+Man geht einkaufen und man weiß nicht, was man zu Hause hat und kauft es im Endeffekt doppelt. 
+Die Webanwendung soll dir ein Überblick von Lebensmittel verschaffen, die du noch zu Hause hast. 
+In dieser Webanwendung sollte man am Anfang eine Übersicht sehen, wo man direkt neue Artikel einfügen kann und Sachen, 
+die im Lagerbestand knapp sind, sollen auch darunter angezeigt werden. 
+Es müsste ein Inventar geben, wo alle Lebensmittel aufgelistet sind und im besten Fall steht da, ob der Bestand knapp wird. 
+Das sollte dann rot markiert werden oder als Notification angezeigt werden. Man sollte in der Lage sein den Lagerstand zu updaten, 
+da entweder etwas dazu kommt oder verbraucht wird. 
+Um die Lebensmittel einzutragen, soll es eine Kamera Funktion geben, die den Kassenzettel und die Produkte darauf erkennt und 
+automatisch in den Lagerbestand einträgt. Ansonsten soll die Kamerafunktion auch Barcodes erkennen, um einzelne Lebensmittel einzutragen. 
+Es wäre sinnvoll auch eine Manuelle Eingabe zu ermöglichen, da bestimmt nicht alle Lebensmittel in der DB sind. 
+Da sollte es ein Formular geben, wo man Essen hinzufügen kann, also z.B. Name, Menge und Marke.
