@@ -21,14 +21,14 @@ Entwicklung einer Anwendung zur Verwaltung des privaten Lebensmittelbestands. Da
 
 ## 4. Technische Rahmenbedingungen & Ungeklärte Punkte (Offen)
 
-1. **Systemarchitektur & Hosting [OFFEN]:**
-   * Option A: Zentrale Web-/Mobile-App mit Cloud-/Zentral-Datenbank.
-   * Option B: Lokale Server-Infrastruktur (z. B. Raspberry Pi) im Heimnetzwerk zur lokalen Datenspeicherung und LLM-Einbindung.
-2. **Datenmodellierung [OFFEN]:**
-   * Soll die Marke/Hersteller explizit gespeichert werden (z. B. Lidl Bio-Karotten) oder erfolgt eine reine Gruppierung nach Produkttyp (z. B. Bio-Karotten)?
-3. **Erfassungslogik beim Barcode-Scan [OFFEN]:**
-   * Verfahren zur Bestimmung der Menge beim Scannen einzelner Barcodes.
-4. **Verarbeitung von Kassenzetteln [OFFEN]:**
-   * Technische Umsetzung der Texterkennung/Parser-Logik für heterogene Kassenzettel-Formate.
-5. **Hardware-Einbindung [OFFEN]:**
-   * Reine Nutzung von Smartphone-Kameras vs. Anbindung externer Barcode-Scanner-Hardware.
+1. **Systemarchitektur & Hosting:**
+   * Zentrale WebMobile-App mit Cloud-/Zentral-Datenbank.
+2. **Datenmodellierung:**
+   * reine Gruppierung nach Produkttyp (z. B. Bio-Karotten), hersteller/marke wird direkt verworfen.
+3. **Erfassungslogik beim Barcode-Scan:**
+   * Mehrfach scannen / einmal scannen und dann über counter manuell quantität setzen.
+4. **Verarbeitung von Kassenzetteln:**
+   * Vision-Language-Ensemble (mehrfach Scan und wenn 9/10 mal biokarotten erkannt werden dann werden die genommen), damit einzelne modellfehler nicht zu stark reinpfuschen
+   * manuelle Eingabe (Text) möglich, wird regelmäßig in barcode-riesen-katalog gesucht und bei gegebener Sicherheit wird gefragt, ob das das Produkt ist und der NUtzer kann dann sagen, dass das so ist oder eben nicht
+5. **Hardware-Einbindung:**
+   * Reine Nutzung von Smartphone-Kameras
