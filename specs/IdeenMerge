@@ -1,0 +1,34 @@
+# Konsolidierte Projektspezifikation: Lebensmittel-Inventar-App
+
+## 1. Systemübersicht & Zielsetzung
+Entwicklung einer Anwendung zur Verwaltung des privaten Lebensmittelbestands. Das System ermöglicht Normalverbrauchern die digitale Nachverfolgung ihrer Bestände, um Doppelkäufe zu vermeiden und Transparenz über vorhandene Lebensmittel zu schaffen.
+
+## 2. Kernfunktionen (Basisversion / Unverzichtbar)
+* **Bestandsübersicht:** Anzeige aller aktuell im Haushalt verfügbaren Produkte inklusive Quantität/Mengenangabe.
+* **Produkte hinzufügen:**
+  * Einscannen von Barcodes einzelner Produkte via Kamera/Scanner.
+  * Einscannen von Kassenzetteln zur automatischen Erkennung und Übernahme mehrerer Artikel.
+  * Manuelle Eingabe über ein Formular (Eingabefelder für Name, Menge und ggf. Marke).
+* **Bestand anpassen / Produkte entfernen:**
+  * Funktion zur Reduzierung oder Löschung von Beständen bei Verbrauch (manuell oder durch Scannen vor dem Verbrauchen).
+* **Datenverwaltung:**
+  * Anlegen und Verwalten von Inventaren.
+
+## 3. Erweiterungen & Erweiterungsideen (Zukünftig / Nice-to-have)
+* **Knappheits-Warnung:** Visualisierung (z. B. rote Markierung oder Notification) bei niedrigem Lagerbestand.
+* **MHD-Tracker:** Nachverfolgung des Mindesthaltbarkeitsdatums (erfordert zusätzliche Dateneingabe über den Kassenzettel hinaus).
+* **Einkaufslisten & Rezeptideen:** Generierung von Rezeptvorschlägen basierend auf dem aktuellen Inventar.
+
+## 4. Technische Rahmenbedingungen & Ungeklärte Punkte (Offen)
+
+1. **Systemarchitektur & Hosting [OFFEN]:**
+   * Option A: Zentrale Web-/Mobile-App mit Cloud-/Zentral-Datenbank.
+   * Option B: Lokale Server-Infrastruktur (z. B. Raspberry Pi) im Heimnetzwerk zur lokalen Datenspeicherung und LLM-Einbindung.
+2. **Datenmodellierung [OFFEN]:**
+   * Soll die Marke/Hersteller explizit gespeichert werden (z. B. Lidl Bio-Karotten) oder erfolgt eine reine Gruppierung nach Produkttyp (z. B. Bio-Karotten)?
+3. **Erfassungslogik beim Barcode-Scan [OFFEN]:**
+   * Verfahren zur Bestimmung der Menge beim Scannen einzelner Barcodes.
+4. **Verarbeitung von Kassenzetteln [OFFEN]:**
+   * Technische Umsetzung der Texterkennung/Parser-Logik für heterogene Kassenzettel-Formate.
+5. **Hardware-Einbindung [OFFEN]:**
+   * Reine Nutzung von Smartphone-Kameras vs. Anbindung externer Barcode-Scanner-Hardware.
