@@ -1,0 +1,17 @@
+Die App soll Privatpersonen helfen den Überblick über ihre Lebensmittel zu Hause zu behalten.
+Also: Neue Produkte werden per Barcode oder Kassenzettel eingescannt. 
+Und: Für Sachen ohne Barcode, z.B. Obst, Gemüse oder Brötchen, sollte es zusätzlich eine manuelle Eingabe geben, bei der man Name und Menge selber eintragen kann.
+
+Zu jedem Produkt sollte dann eine Menge mit Einheit gespeichert werden, also Stück/Gramm/Liter, je nachdem was passt. Beim Barcode-Scan könnte die App die Packungsgröße aus einer Produktdatenbank übernehmen, man sollte sie aber auch selbst anpassen können.
+
+Ich finde es auch wichtig, dass man Produte nicht nur komplett löschen, sondern auch teilweise verbrauchen kann. Also, wenn ich nur die Hälfte der Milch trinke, will ich die Menge reduzieren können, statt das Produkt ganz zu entfernen. Erst wenn die Menge dann bei null ist, verschwindet dann auch das Produkt aus dem Bestand.
+
+Außerdem möchte ich auch das Mindesthaltbarkeitsdatum speichern können. In der App wird dann angezeigt, welche Produkte bald ablaufen, damit weniger weggeworfen wird oder man weiß, wann man wieder (z.B. Milch die kurz vorm Ablaufdatum steht) nachkaufen sollte. Abgelaufende Lebensmittel könnten ja in einem extra Fenster(Mülleimer Bereich?) sichtbar sein, solange man sie nicht aus dem Bestand geworfen hat.
+
+Ich finde einen Lagerort ebenfalls noch gut. Also wenn man einen Lagerort angeben kann (Kühlschrank, Tiefkühler, Vorratsschrank) und danach könnte man den Bestant filtern.
+
+Und da es oft vorkommt, dass mehrere Leute zusammen wohnen, sollte ein Haushalt einen gemeinsamen Bestand haben, auf den dann alle zugreifen können.
+
+Vielleicht könnte man noch einrichten, dass wenn ein Produkt aufgebraucht ist, dieser automatisch auf eine Einkaufsliste gesetzt wird.
+
+Da wir einen Prototypen erstellen wollen, würde ich vorschlagen diesen als Web-App umzusetzen.
