@@ -32,3 +32,6 @@ Entwicklung einer Anwendung zur Verwaltung des privaten Lebensmittelbestands. Da
    * manuelle Eingabe (Text) möglich, wird regelmäßig in barcode-riesen-katalog gesucht und bei gegebener Sicherheit wird gefragt, ob das das Produkt ist und der NUtzer kann dann sagen, dass das so ist oder eben nicht
 5. **Hardware-Einbindung:**
    * Reine Nutzung von Smartphone-Kameras
+
+6. **Gemeinsamer Haushaltsbestand:**
+   * Mehrere Nutzer können einem Haushalt zugeordnet werden und teilen sich einen gemeinsamen Bestand.
