@@ -17,7 +17,7 @@ Entwicklung einer Anwendung zur Verwaltung des privaten Lebensmittelbestands. Da
 ## 3. Erweiterungen & Erweiterungsideen (Zukünftig / Nice-to-have)
 * **Knappheits-Warnung:** Visualisierung (z. B. rote Markierung oder Notification) bei niedrigem Lagerbestand.
 * **MHD-Tracker:** Nachverfolgung des Mindesthaltbarkeitsdatums (erfordert zusätzliche Dateneingabe über den Kassenzettel hinaus).
-* **Einkaufslisten & Rezeptideen:** Generierung von Rezeptvorschlägen basierend auf dem aktuellen Inventar.
+* **Einkaufslisten & Rezeptideen:** Generierung von Rezeptvorschlägen basierend auf dem aktuellen Inventar.f
 
 ## 4. Technische Rahmenbedingungen & Ungeklärte Punkte (Offen)
 
