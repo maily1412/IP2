@@ -26,6 +26,7 @@ npm run dev
 ```
 
 Dann <http://localhost:5173> öffnen. Vite leitet `/api` an das Backend weiter.
+Läuft das Backend woanders, setzt man vor `npm run dev` die Variable `API_PROXY`, z. B. `http://localhost:8765`.
 Die API-Doku gibt es unter <http://localhost:8000/docs>.
 
 Die Datenbank `backend/inventar.db` (SQLite) entsteht beim ersten Start. Zum Zurücksetzen einfach löschen.

@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "@fontsource-variable/eb-garamond";
+@import "@fontsource-variable/manrope";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -45,73 +47,56 @@
     --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* Farbpalette „Sahara“ aus dem Design-Entwurf, auf die shadcn-Variablen abgebildet */
 :root {
-    --radius: 0.625rem;
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
+    --radius: 0.5rem;
+    --background: #faf5ee;
+    --foreground: #3a302a;
+    --card: #ffffff;
+    --card-foreground: #3a302a;
+    --popover: #ffffff;
+    --popover-foreground: #3a302a;
+    --primary: #c2652a;
+    --primary-foreground: #ffffff;
+    --secondary: #eae2da;
+    --secondary-foreground: #605850;
+    --muted: #f6f0e8;
+    --muted-foreground: #605850;
+    --accent: #f2ece4;
+    --accent-foreground: #3a302a;
+    --destructive: #c0392b;
+    --border: #d8d0c8;
+    --input: #d8d0c8;
+    --ring: #c2652a;
+    --chart-1: #c2652a;
+    --chart-2: #e08850;
+    --chart-3: #8c3c3c;
+    --chart-4: #78706a;
+    --chart-5: #f0a878;
+    --sidebar: #faf5ee;
+    --sidebar-foreground: #3a302a;
+    --sidebar-primary: #c2652a;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #f2ece4;
+    --sidebar-accent-foreground: #3a302a;
+    --sidebar-border: #d8d0c8;
+    --sidebar-ring: #c2652a;
 }
 
-.dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+/* Zusätzliche Abstufungen aus dem Entwurf, z. B. bg-surface-container-low */
+@theme {
+    --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+    --font-headline: "EB Garamond Variable", ui-serif, Georgia, serif;
+    --color-surface: #faf5ee;
+    --color-surface-container-lowest: #ffffff;
+    --color-surface-container-low: #f6f0e8;
+    --color-surface-container: #f2ece4;
+    --color-surface-container-high: #ece6dc;
+    --color-surface-variant: #ece6dc;
+    --color-on-surface: #3a302a;
+    --color-on-surface-variant: #605850;
+    --color-outline: #9a9088;
+    --color-tertiary: #8c3c3c;
 }
 
 @layer base {
@@ -119,6 +104,8 @@
     @apply border-border outline-ring/50;
     }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background font-sans text-foreground antialiased;
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
     }
 }

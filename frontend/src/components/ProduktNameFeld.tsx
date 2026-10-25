@@ -1,20 +1,20 @@
 import Fuse from 'fuse.js'
 import { useId, useMemo, useState, type KeyboardEvent } from 'react'
-import { Input } from '@/components/ui/input'
-import { MAX_NAME } from '@/lib/eingabe'
+import { FELD_KLASSE, MAX_NAME } from '@/lib/eingabe'
 import { useProdukttypen } from '@/lib/queries'
 import { cn } from '@/lib/utils'
 
 const MAX_VORSCHLAEGE = 5
 
 type Props = {
+  id?: string
   value: string
   onChange: (name: string) => void
   autoFocus?: boolean
 }
 
 /** Eingabefeld für den Produktnamen mit unscharfer Autovervollständigung über alle Produkttypen. */
-export function ProduktNameFeld({ value, onChange, autoFocus }: Props) {
+export function ProduktNameFeld({ id, value, onChange, autoFocus }: Props) {
   const { data: produkttypen = [] } = useProdukttypen()
   const [offen, setOffen] = useState(false)
   const [aktiv, setAktiv] = useState(-1)
@@ -60,15 +60,17 @@ export function ProduktNameFeld({ value, onChange, autoFocus }: Props) {
   }
 
   return (
-    <div className="relative min-w-0 flex-1 basis-48">
-      <Input
-        placeholder="Produkt, z. B. Karotten"
+    <div className="relative">
+      <input
+        id={id}
+        type="text"
+        className={FELD_KLASSE}
+        placeholder="z. B. Hafermilch Barista"
         value={value}
         autoComplete="off"
         autoFocus={autoFocus}
         maxLength={MAX_NAME}
         role="combobox"
-        aria-label="Produktname"
         aria-expanded={listeSichtbar}
         aria-controls={listeId}
         aria-activedescendant={markiert >= 0 ? `${listeId}-${markiert}` : undefined}
@@ -85,7 +87,7 @@ export function ProduktNameFeld({ value, onChange, autoFocus }: Props) {
         <ul
           id={listeId}
           role="listbox"
-          className="absolute z-10 mt-1 w-full overflow-hidden rounded-md border bg-popover shadow-md"
+          className="absolute z-10 mt-1 w-full overflow-hidden rounded-lg bg-surface-container-lowest shadow-[0_4px_20px_rgba(58,48,42,0.12)]"
         >
           {vorschlaege.map((p, i) => (
             <li
@@ -94,8 +96,8 @@ export function ProduktNameFeld({ value, onChange, autoFocus }: Props) {
               role="option"
               aria-selected={i === markiert}
               className={cn(
-                'flex cursor-pointer justify-between gap-2 px-3 py-2 text-sm',
-                i === markiert && 'bg-accent text-accent-foreground',
+                'flex cursor-pointer justify-between gap-2 px-4 py-2.5 text-sm',
+                i === markiert && 'bg-surface-container',
               )}
               // mousedown statt click, damit das Feld nicht vorher den Fokus verliert
               onMouseDown={(e) => {
@@ -105,7 +107,7 @@ export function ProduktNameFeld({ value, onChange, autoFocus }: Props) {
               onMouseEnter={() => setAktiv(i)}
             >
               <span className="truncate">{p.name}</span>
-              <span className="shrink-0 text-muted-foreground">
+              <span className="shrink-0 text-xs text-on-surface-variant">
                 {p.anzahl > 0 ? `${p.anzahl} im Bestand` : 'aufgebraucht'}
               </span>
             </li>
