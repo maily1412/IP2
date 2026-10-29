@@ -1,8 +1,8 @@
 import httpx
 import pytest
 
-from app import openfoodfacts
-from app.openfoodfacts import OffNichtErreichbar, OffProdukt
+from app.integrations import openfoodfacts
+from app.integrations.openfoodfacts import OffNichtErreichbar, OffProdukt
 
 EAN = "4000417025005"
 

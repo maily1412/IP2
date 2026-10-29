@@ -1,6 +1,6 @@
 import pytest
 
-from app import main
+from app.services import inventory
 
 
 def anlegen(client, name, anzahl=1):
@@ -93,14 +93,14 @@ def test_gleichzeitig_angelegter_name_wird_hochgezaehlt(client, monkeypatch):
     p = anlegen(client, "Brot", 2)
 
     # Simuliert ein zweites Gerät: die Suche sieht den Eintrag noch nicht, der Insert scheitert
-    original = main.nach_name_suchen
+    original = inventory.nach_name_suchen
     aufrufe = []
 
     def erst_nicht_gefunden(session, name):
         aufrufe.append(name)
         return None if len(aufrufe) == 1 else original(session, name)
 
-    monkeypatch.setattr(main, "nach_name_suchen", erst_nicht_gefunden)
+    monkeypatch.setattr(inventory, "nach_name_suchen", erst_nicht_gefunden)
 
     response = client.post("/api/produkttypen", json={"name": "Brot", "anzahl": 3})
     assert response.status_code == 200

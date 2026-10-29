@@ -7,7 +7,7 @@ Ergänzt [Spezifikation_Prototyp.md](Spezifikation_Prototyp.md).
 | Bereich | Entscheidung |
 |---|---|
 | Architektur | FastAPI-Backend + separates Frontend |
-| Repo | Monorepo mit `backend/` und `frontend/` |
+| Repo | Monorepo mit FastAPI in `app/`, Tests in `tests/`, Weboberfläche in `src/web/`, Startskripten in `bin/` und Datenbank in `database/` |
 | Frontend | React + Vite + TypeScript |
 | UI | Tailwind CSS + shadcn/ui |
 | Daten im Frontend | TanStack Query + generierter API-Client |
@@ -25,10 +25,10 @@ Ergänzt [Spezifikation_Prototyp.md](Spezifikation_Prototyp.md).
 Handy (PWA, React)
    │  Kamera, Barcode-Scan, Fuse.js
    ▼  HTTPS/JSON + Session-Cookie
-FastAPI (Python)
-   ├─ SQLite (SQLModel/Alembic)
-   ├─ Open Food Facts (Barcode → Name)
-   └─ Ollama, Qwen-VL (Kassenzettel, Produkttyp-Vorschlag)
+FastAPI (Python, app/)
+   ├─ database/ (SQLite, SQLModel/Alembic)
+   ├─ integrations/ (Open Food Facts)
+   └─ services/ (Fachlogik)
 ```
 
 ## 2. Frontend

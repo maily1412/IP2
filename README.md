@@ -1,7 +1,28 @@
 # Lebensmittel-Inventar-App (MVP)
 
-Bestandsübersicht mit +/− und Entfernen sowie manuelle Eingabe mit Autovervollständigung.
+Bestandsübersicht mit +/− und Entfernen sowie manueller Eingabe mit Autovervollständigung.
 Plan und Specs liegen in [specs/](specs/).
+
+## Projektstruktur
+
+```text
+app/
+  api/                  HTTP-Routen, Abhängigkeiten und API-Versionen
+  core/                 Datenbankverbindung und zentrale Infrastruktur
+  integrations/         Externe Dienste
+  models/               Datenbankmodelle
+  schemas/              Transferobjekte und Eingabevalidierung
+  services/             Fachlogik
+  main.py               FastAPI-Einstiegspunkt
+bin/                    Startskripte
+database/               SQLite-Datenbankdatei
+specs/                  Anforderungen und technische Dokumentation
+src/web/                React-Oberfläche
+tests/
+  api/                  API- und Integrationstests
+pyproject.toml          Python-Abhängigkeiten und Werkzeugkonfiguration
+uv.lock                 Gesperrte Python-Abhängigkeiten
+```
 
 ## Voraussetzungen
 
@@ -10,39 +31,35 @@ Plan und Specs liegen in [specs/](specs/).
 
 ## Starten
 
-Zwei Terminals:
+In zwei Terminals:
 
-```sh
-# Terminal 1: Backend auf http://localhost:8000
-cd backend
-uv run uvicorn app.main:app --reload
+```powershell
+.\bin\start-server.ps1
 ```
 
-```sh
-# Terminal 2: Frontend auf http://localhost:5173
-cd frontend
-npm install   # nur beim ersten Mal
-npm run dev
+```powershell
+.\bin\start-web.ps1
 ```
 
-Dann <http://localhost:5173> öffnen. Vite leitet `/api` an das Backend weiter.
-Läuft das Backend woanders, setzt man vor `npm run dev` die Variable `API_PROXY`, z. B. `http://localhost:8765`.
+Dann <http://localhost:5173> öffnen. Vite leitet `/api` an das Serverprogramm auf Port 8000 weiter.
+Läuft das Serverprogramm woanders, setzt man vor dem Start der Weboberfläche `API_PROXY`, z. B.
+`$env:API_PROXY = "http://localhost:8765"`.
 Die API-Doku gibt es unter <http://localhost:8000/docs>.
 
-Die Datenbank `backend/inventar.db` (SQLite) entsteht beim ersten Start. Zum Zurücksetzen einfach löschen.
-Eine andere Datenbank lässt sich über die Umgebungsvariable `DATABASE_URL` setzen.
+Die Datenbank `database/inventar.db` (SQLite) entsteht beim ersten Start. Zum Zurücksetzen kann
+diese Datei gelöscht werden. Eine andere Datenbank lässt sich über `DATABASE_URL` setzen.
 
 ## Prüfen
 
-```sh
-cd backend
+```powershell
 uv run pytest
 uv run ruff check .
-uv run ruff format .
+uv run ruff format --check .
 ```
 
-```sh
-cd frontend
-npm run build   # Typprüfung und Build
+```powershell
+Set-Location src/web
+npm install   # nur beim ersten Mal
+npm run build # Typprüfung und Build
 npm run lint
 ```

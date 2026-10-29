@@ -23,8 +23,8 @@ Der Stack bleibt derselbe (FastAPI, SQLite/SQLModel, React + Vite + TypeScript, 
 
 ### Schritt 1: Setup
 
-- [x] `backend/` mit uv: FastAPI, SQLModel, Ruff, pytest
-- [x] `frontend/` mit Vite + React + TypeScript, Tailwind, shadcn/ui, TanStack Query, Fuse.js
+- [x] `app/` und `tests/` auf Projektebene mit uv: FastAPI, SQLModel, Ruff, pytest
+- [x] `src/web/` mit Vite + React + TypeScript, Tailwind, shadcn/ui, TanStack Query, Fuse.js
 - [x] Vite-Proxy `/api` → FastAPI
 - [x] README mit den Startbefehlen
 
