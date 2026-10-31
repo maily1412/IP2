@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import {
   anzahlAendern,
   barcodeEinbuchen,
+  barcodeAusBildLesen,
   barcodeNachschlagen,
   produkttypEntfernen,
   produkttypenLaden,
@@ -49,6 +50,10 @@ export function useEntfernen() {
 
 export function useBarcodeNachschlagen() {
   return useMutation({ mutationFn: barcodeNachschlagen })
+}
+
+export function useBarcodeBildLesen() {
+  return useMutation({ mutationFn: barcodeAusBildLesen })
 }
 
 export function useBarcodeEinbuchen() {

@@ -49,6 +49,33 @@ def test_open_food_facts_nicht_erreichbar(client, monkeypatch):
     assert client.get(f"/api/barcode/{EAN}").json()["off_fehler"] is True
 
 
+def test_barcode_aus_bild(client, monkeypatch, off):
+    from app.api.v1.endpoints import barcode as endpoint
+
+    produkte, _ = off
+    produkte[EAN] = OffProdukt(name="Marzipan", marke="Ritter Sport")
+    monkeypatch.setattr(endpoint, "readout_barcode", lambda _path: type("Scan", (), {"text": EAN})())
+
+    response = client.post(
+        "/api/barcode/bild",
+        files={"bild": ("foto.jpg", b"fake image", "image/jpeg")},
+    )
+    assert response.status_code == 200
+    assert response.json()["barcode"] == EAN
+    assert response.json()["off_name"] == "Marzipan"
+
+
+def test_bild_ohne_barcode(client, monkeypatch):
+    from app.api.v1.endpoints import barcode as endpoint
+
+    monkeypatch.setattr(endpoint, "readout_barcode", lambda _path: None)
+    response = client.post(
+        "/api/barcode/bild",
+        files={"bild": ("foto.jpg", b"fake image", "image/jpeg")},
+    )
+    assert response.status_code == 422
+
+
 def test_zuordnung_wird_gespeichert_und_genutzt(client, off):
     produkte, aufrufe = off
     produkte[EAN] = OffProdukt(name="Marzipan", marke=None)
