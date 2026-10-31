@@ -1,10 +1,10 @@
-import { Check, CircleCheck, NotebookPen, ScanBarcode, Search } from 'lucide-react'
-import { useEffect, useId, useState, type FormEvent, type ReactNode } from 'react'
+import { Camera, Check, CircleCheck, NotebookPen, ScanBarcode, Search } from 'lucide-react'
+import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from 'react'
 import { Mengenwahl } from '@/components/Mengenwahl'
 import { ProduktNameFeld } from '@/components/ProduktNameFeld'
 import type { BarcodeErgebnis, ProduktTyp } from '@/lib/api'
 import { barcodeGueltig, FELD_KLASSE, LABEL_KLASSE, MAX_ANZAHL } from '@/lib/eingabe'
-import { useBarcodeEinbuchen, useBarcodeNachschlagen, useHinzufuegen } from '@/lib/queries'
+import { useBarcodeBildLesen, useBarcodeEinbuchen, useBarcodeNachschlagen, useHinzufuegen } from '@/lib/queries'
 import { cn } from '@/lib/utils'
 
 type Modus = 'barcode' | 'manuell'
@@ -161,18 +161,33 @@ function ManuellModus({ anzahl, mengenwahl, onGespeichert }: ModusProps) {
  */
 function BarcodeModus({ anzahl, mengenwahl, onGespeichert }: ModusProps) {
   const nachschlagen = useBarcodeNachschlagen()
+  const bildLesen = useBarcodeBildLesen()
   const einbuchen = useBarcodeEinbuchen()
   const [barcode, setBarcode] = useState('')
   const [ergebnis, setErgebnis] = useState<BarcodeErgebnis | null>(null)
   const [name, setName] = useState('')
   const barcodeId = useId()
   const nameId = useId()
+  const bildId = useId()
+  const bildFeld = useRef<HTMLInputElement>(null)
+
+  function bildAuswaehlen(datei?: File) {
+    if (!datei) return
+    bildLesen.mutate(datei, {
+      onSuccess: (gefunden) => {
+        setBarcode(gefunden.barcode)
+        setErgebnis(gefunden)
+        setName(gefunden.produkttyp?.name ?? gefunden.off_name ?? '')
+      },
+    })
+  }
 
   function zuruecksetzen() {
     setBarcode('')
     setErgebnis(null)
     setName('')
     nachschlagen.reset()
+    bildLesen.reset()
     einbuchen.reset()
   }
 
@@ -222,6 +237,28 @@ function BarcodeModus({ anzahl, mengenwahl, onGespeichert }: ModusProps) {
             nachschlagen.reset()
           }}
         />
+        <input
+          ref={bildFeld}
+          id={bildId}
+          type="file"
+          accept="image/*"
+          capture="environment"
+          className="sr-only"
+          onChange={(e) => {
+            bildAuswaehlen(e.currentTarget.files?.[0])
+            e.currentTarget.value = ''
+          }}
+        />
+        <button
+          type="button"
+          disabled={bildLesen.isPending}
+          onClick={() => bildFeld.current?.click()}
+          className="flex w-full items-center justify-center gap-2 rounded-lg border border-outline-variant px-4 py-3 text-sm font-medium text-on-surface-variant transition-colors hover:bg-surface-container disabled:opacity-50"
+        >
+          <Camera className="size-[18px]" />
+          {bildLesen.isPending ? 'Bild wird analysiert …' : 'Barcode fotografieren oder Bild auswählen'}
+        </button>
+        {bildLesen.isError && <Fehler>Das Bild konnte nicht verarbeitet werden. Bitte anderes Bild versuchen.</Fehler>}
         {!ergebnis && barcode.length > 0 && !barcodeGueltig(barcode) && (
           <p className="text-xs text-on-surface-variant">
             Ein Barcode hat 8, 12, 13 oder 14 Ziffern.
