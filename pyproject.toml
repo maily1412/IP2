@@ -6,6 +6,7 @@ requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.162.0",
     "httpx>=0.28.1",
+    "python-multipart>=0.0.20",
     "opencv-python>=5.0.0.93",
     "sqlmodel>=0.0.48",
     "uvicorn[standard]>=0.54.0",
