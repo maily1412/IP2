@@ -12,6 +12,8 @@ export default defineConfig({
     },
   },
   server: {
+    // Für den Zugriff von anderen Geräten im lokalen Netzwerk.
+    host: '0.0.0.0',
     proxy: {
       // Ziel per Umgebungsvariable änderbar, z. B. für ein zweites Backend
       '/api': process.env.API_PROXY ?? 'http://localhost:8000',
