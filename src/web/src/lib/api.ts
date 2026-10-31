@@ -10,7 +10,17 @@ async function anfrage<T>(pfad: string, init?: RequestInit): Promise<T> {
     headers: { 'Content-Type': 'application/json', ...init?.headers },
   })
   if (!response.ok) {
-    throw new Error(`${init?.method ?? 'GET'} ${pfad} fehlgeschlagen (${response.status})`)
+    throw new Error('Anfrage fehlgeschlagen')
+  }
+  return response.json() as Promise<T>
+}
+
+async function bildAnfrage<T>(pfad: string, bild: File): Promise<T> {
+  const daten = new FormData()
+  daten.append('bild', bild)
+  const response = await fetch(`/api${pfad}`, { method: 'POST', body: daten })
+  if (!response.ok) {
+    throw new Error('Anfrage fehlgeschlagen')
   }
   return response.json() as Promise<T>
 }
@@ -53,6 +63,11 @@ export type BarcodeErgebnis = {
 /** Erst die eigene Zuordnung, sonst Open Food Facts. */
 export function barcodeNachschlagen(barcode: string) {
   return anfrage<BarcodeErgebnis>(`/barcode/${barcode}`)
+}
+
+/** Erkennt einen Barcode in einem hochgeladenen Foto und fragt ihn nach. */
+export function barcodeAusBildLesen(bild: File) {
+  return bildAnfrage<BarcodeErgebnis>('/barcode/bild', bild)
 }
 
 /** Bucht den bestätigten Produkttyp ein und speichert die Zuordnung zum Barcode. */
