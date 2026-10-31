@@ -1,18 +1,8 @@
+from pathlib import Path
+from typing import Any
+
 import cv2 as cv
 import zxingcpp as zx
-from typing import Any
-from pathlib import Path
-
-img = cv.imread('mate_test.png')
-barcodes = zx.read_barcodes(img)
-for barcode in barcodes:
-	print('Found barcode:'
-		f'\n Text:    "{barcode.text}"'
-		f'\n Format:   {barcode.format}'
-		f'\n Content:  {barcode.content_type}'
-		f'\n Position: {barcode.position}')
-if len(barcodes) == 0:
-	print("Could not find any barcode.")
 
 
 def readout_barcode(img_pth:str|Path) -> dict[Any]|None:
@@ -24,6 +14,7 @@ def readout_barcode(img_pth:str|Path) -> dict[Any]|None:
     Returns:
         info (dic(Any)|None): If barcode was found: Object of type `zxingcpp.Barcode`, else `None`
 	"""
+	img_pth = Path(img_pth)
 	if not img_pth.is_file():
 		raise ValueError(f"{img_pth} must be a file.")
 	img = cv.imread(img_pth) 
@@ -32,6 +23,6 @@ def readout_barcode(img_pth:str|Path) -> dict[Any]|None:
 	barcodes = zx.read_barcodes(img)
 	if len(barcodes) > 1:
 		raise IndexError(f"Found more than 1 barcode in image. Ensure only one is visible.")
-	return barcodes[0] if isinstance(barcodes, list) else None
+	return barcodes[0] if barcodes else None
 
 
