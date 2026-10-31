@@ -253,10 +253,11 @@ function BarcodeModus({ anzahl, mengenwahl, onGespeichert }: ModusProps) {
           type="button"
           disabled={bildLesen.isPending}
           onClick={() => bildFeld.current?.click()}
-          className="flex w-full items-center justify-center gap-2 rounded-lg border border-outline-variant px-4 py-3 text-sm font-medium text-on-surface-variant transition-colors hover:bg-surface-container disabled:opacity-50"
+          aria-label={bildLesen.isPending ? 'Bild wird analysiert' : 'Barcode fotografieren oder Bild auswählen'}
+          title="Barcode fotografieren oder Bild auswählen"
+          className="flex h-11 w-full items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-sm transition-all hover:bg-primary/95 active:scale-[0.97] disabled:opacity-50"
         >
-          <Camera className="size-[18px]" />
-          {bildLesen.isPending ? 'Bild wird analysiert …' : 'Barcode fotografieren oder Bild auswählen'}
+          <Camera className={cn('size-5', bildLesen.isPending && 'animate-pulse')} />
         </button>
         {bildLesen.isError && <Fehler>Das Bild konnte nicht verarbeitet werden. Bitte anderes Bild versuchen.</Fehler>}
         {!ergebnis && barcode.length > 0 && !barcodeGueltig(barcode) && (
